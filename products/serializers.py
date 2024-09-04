@@ -1,11 +1,12 @@
 from rest_framework import serializers
 from .models import Product, Review, Director
+from django.db import models
 
 
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = ['text', 'stars']
+        fields = ['id', 'text', 'stars', 'product']
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -14,7 +15,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ['title', 'all_reviews', 'rating']
+        fields = ['id', 'title', 'text', 'price', 'category', 'tags', 'director', 'is_active', 'created', 'updated', 'all_reviews', 'rating']
 
     def get_rating(self, obj):
         reviews = obj.all_reviews.all()
@@ -24,8 +25,8 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class DirectorSerializer(serializers.ModelSerializer):
-    movies_count = serializers.IntegerField()
+    movies_count = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Director
-        fields = ['name', 'movies_count']
+        fields = ['id', 'name', 'movies_count']
