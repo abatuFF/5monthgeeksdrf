@@ -81,7 +81,6 @@ def movie_detail_view(request, id):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-# Review Views
 @api_view(['GET', 'POST'])
 def reviews_view(request):
     if request.method == 'GET':
