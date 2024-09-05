@@ -4,6 +4,7 @@ from products.views import (
     movies_view, movie_detail_view,
     reviews_view, review_detail_view
 )
+from registration.views import register_user, confirm_user, login_user
 
 urlpatterns = [
     # Роуты для режиссёров
@@ -20,4 +21,12 @@ urlpatterns = [
 
     # Дополнительный маршрут для отзывов о фильмах
     path('api/v1/movies/reviews/', reviews_view, name='movie-reviews'),
+
+    path('api/v1/users/register/', register_user, name='register-user'),
+
+    # Подтверждение пользователя
+    path('api/v1/users/confirm/', confirm_user, name='confirm-user'),
+
+    # Авторизация пользователя
+    path('api/v1/users/login/', login_user, name='login-user'),
 ]
